@@ -5,5 +5,4 @@ FORBIDDEN = re.compile(
     re.IGNORECASE,
 )
 def is_sql_safe(sql: str) -> bool:
-     sql = sql.strip().rstrip(";")
     return not FORBIDDEN.search(sql)
