@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 
 def clean_sql(sql: str) -> str:
-    sql = re.sub(r"'''sql", "", sql, flags=re.IGNORECASE)
+    sql = re.sub(r"'''.*?\n", "", sql)
     sql = re.sub(r"'''", "", sql)
     return sql.strip()
 
