@@ -1,5 +1,8 @@
 import pandas as pd
 
 def run_query(sql, engine):
-    df = pd.read_sql(sql, engine)
-    return df
+    try:
+        return pd.read_sql(sql, engine)
+    except Exception as e:
+        st.error(str(e))
+        raise
