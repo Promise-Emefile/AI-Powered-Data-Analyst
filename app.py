@@ -4,7 +4,7 @@ import atexit
 
 from db.session_db import create_session_engine
 from db.ingest import ingest_csv
-from db.query import run_query
+from db.query import run_query, clean_sql
 from utils.schema_utils import extract_schema
 from utils.sql_safety import is_sql_safe
 from ai.sql_generator import generate_sql
@@ -43,6 +43,7 @@ if uploaded_file:
 
     if question and "schema" in st.session_state:
         sql = generate_sql(question, st.session_state.schema)
+        sql = clean_sql(sql)
         st.subheader("Generated SQL Query")
         st.code(sql, language="sql")
 
